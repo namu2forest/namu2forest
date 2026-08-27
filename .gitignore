@@ -1,0 +1,4 @@
+config/git_config.json
+.env
+.env.local
+node_modules/
