@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
   }
 
   const token = process.env.GITHUB_TOKEN || '';
-  const adminPassword = process.env.ADMIN_PASSWORD || 'admin1234';
+  const adminPassword = process.env.ADMIN_PASSWORD || '2370';
 
   if (req.method === 'POST') {
     let body = req.body;
