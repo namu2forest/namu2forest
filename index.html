@@ -112,12 +112,17 @@
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-16 pb-24 md:pb-0 relative flex flex-col min-h-screen">
     <!-- TopAppBar -->
-    <header class="bg-surface/80 backdrop-blur-xl dark:bg-surface-dim/80 fixed top-0 w-full z-50 border-b border-border-glass shadow-none transition-all duration-300">
+    <header class="bg-[#1c1827]/90 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-primary/20 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300">
         <div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-container-max mx-auto">
             <div class="flex items-center gap-2 text-primary">
                 <span class="material-symbols-outlined font-headline-sm text-headline-sm">house</span>
                 <span class="font-headline-sm text-headline-sm font-bold text-on-surface dark:text-on-surface">Namu Real Estate</span>
             </div>
+            <nav class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="index.html" class="text-primary font-bold">홈</a>
+                <a href="news.html" class="text-on-surface-variant hover:text-primary transition-colors">소식 & 공지</a>
+                <a href="admin.html" class="text-on-surface-variant hover:text-primary transition-colors">관리자</a>
+            </nav>
         </div>
     </header>
 
@@ -208,14 +213,14 @@
         </div>
     </footer>
 
-    <nav class="md:hidden bg-surface-container dark:bg-surface-container-high fixed bottom-0 w-full z-50 rounded-t-xl border-t border-border-glass shadow-2xl px-margin-mobile py-4 flex justify-around items-center">
-        <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-6 py-2 active:scale-95 transition-transform" href="tel:010-5635-2684">
-            <span class="material-symbols-outlined mb-1">call</span>
-            <span class="font-label-sm text-label-sm">Call Office</span>
+    <nav class="md:hidden bg-[#1c1827]/95 backdrop-blur-2xl fixed bottom-0 w-full z-50 rounded-t-2xl border-t border-primary/30 shadow-[0_-8px_30px_rgba(0,0,0,0.8)] px-margin-mobile py-3 flex justify-around items-center">
+        <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container font-bold rounded-full px-6 py-2 active:scale-95 transition-transform shadow-md" href="tel:010-5635-2684">
+            <span class="material-symbols-outlined text-xl mb-0.5">call</span>
+            <span class="font-label-sm text-xs">전화 연결</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 active:scale-95 transition-transform rounded-xl px-4 py-2" href="#">
-            <span class="material-symbols-outlined mb-1">description</span>
-            <span class="font-label-sm text-label-sm">Inquiry Form</span>
+        <a class="flex flex-col items-center justify-center text-primary hover:bg-surface-variant/50 active:scale-95 transition-transform rounded-xl px-5 py-2 font-medium" href="news.html">
+            <span class="material-symbols-outlined text-xl mb-0.5">newspaper</span>
+            <span class="font-label-sm text-xs">소식 & 공지</span>
         </a>
     </nav>
 </body>
