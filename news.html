@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>소식 & 공지사항 - Namu Real Estate</title>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d1bcff",
+                        "bg-deep": "#0A0A0C",
+                        "surface-container-low": "#1d1a25",
+                        "on-surface-variant": "#ccc3da",
+                        "surface-dim": "#15121d",
+                        "surface-variant": "#37333f",
+                        "surface": "#15121d",
+                        "surface-container-high": "#2c2834",
+                        "background": "#15121d",
+                        "secondary-container": "#00eefc",
+                        "on-secondary-container": "#00686f",
+                        "surface-container": "#211e2a",
+                        "surface-glass": "rgba(255, 255, 255, 0.05)",
+                        "border-glass": "rgba(255, 255, 255, 0.12)",
+                        "on-surface": "#e7dff0",
+                        "outline-variant": "#4a4457",
+                        "surface-container-lowest": "#100c17"
+                    },
+                    spacing: {
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px"
+                    },
+                    fontFamily: {
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-16 pb-24 md:pb-0 relative flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-border-glass shadow-none transition-all duration-300">
+        <div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-container-max mx-auto">
+            <a href="index.html" class="flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined font-headline-sm">house</span>
+                <span class="font-headline-sm font-bold text-on-surface">Namu Real Estate</span>
+            </a>
+            <nav class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="index.html" class="text-on-surface-variant hover:text-primary transition-colors">홈</a>
+                <a href="news.html" class="text-primary font-bold">소식 & 공지</a>
+                <a href="admin.html" class="text-on-surface-variant hover:text-primary transition-colors">관리자</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile flex flex-col gap-8 pt-8 pb-12">
+        <section class="py-8 border-b border-border-glass">
+            <h1 class="text-3xl font-bold mb-2 text-on-surface">소식 & 부동산 소식</h1>
+            <p class="text-on-surface-variant">동탄 나무 부동산에서 전해드리는 공지사항 및 최근 매물/투자 뉴스입니다.</p>
+        </section>
+
+        <!-- Search & Filter Controls -->
+        <section class="flex flex-col sm:flex-row gap-4 justify-between items-center">
+            <div class="flex gap-2">
+                <button onclick="filterCategory('전체')" class="category-btn active px-4 py-2 rounded-full border border-border-glass bg-primary text-background font-medium text-sm transition-all" data-category="전체">전체</button>
+                <button onclick="filterCategory('공지사항')" class="category-btn px-4 py-2 rounded-full border border-border-glass bg-surface-container text-on-surface-variant font-medium text-sm transition-all" data-category="공지사항">공지사항</button>
+                <button onclick="filterCategory('매물정보')" class="category-btn px-4 py-2 rounded-full border border-border-glass bg-surface-container text-on-surface-variant font-medium text-sm transition-all" data-category="매물정보">매물정보</button>
+            </div>
+            <div class="w-full sm:w-72 relative">
+                <span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span>
+                <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="검색어를 입력하세요..." class="w-full pl-9 pr-4 py-2 bg-surface-container border border-border-glass rounded-lg text-sm text-on-surface focus:outline-none focus:border-primary">
+            </div>
+        </section>
+
+        <!-- Post List Container -->
+        <section id="postList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Dynamic Post Cards will render here -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest border-t border-outline-variant py-12 px-margin-mobile md:px-margin-desktop">
+        <div class="max-w-container-max mx-auto flex flex-col gap-4">
+            <p class="text-xs text-on-surface-variant">© 2026 Namu Real Estate. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="db.js"></script>
+    <script>
+        let currentCategory = '전체';
+
+        function renderPosts() {
+            const posts = window.postDB.getPosts();
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const container = document.getElementById('postList');
+
+            const filtered = posts.filter(post => {
+                const matchCat = (currentCategory === '전체') || (post.category === currentCategory);
+                const matchSearch = post.title.toLowerCase().includes(searchVal) || (post.summary && post.summary.toLowerCase().includes(searchVal));
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-on-surface-variant">등록된 게시글이 없습니다.</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(post => `
+                <a href="news-detail.html?id=${post.id}" class="bg-surface-container p-6 rounded-xl border border-border-glass flex flex-col gap-3 hover:bg-surface-variant/50 transition-all">
+                    <div class="flex justify-between items-center">
+                        <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">${post.category || '일반'}</span>
+                        <span class="text-xs text-on-surface-variant">${post.createdAt}</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-on-surface hover:text-primary transition-colors">${post.title}</h2>
+                    <p class="text-sm text-on-surface-variant line-clamp-2">${post.summary || post.content.substring(0, 100)}</p>
+                    <div class="flex items-center gap-1 text-primary text-xs font-medium mt-2">
+                        자세히 보기 <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.dataset.category === cat) {
+                    btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+                    btn.classList.add('bg-primary', 'text-background');
+                } else {
+                    btn.classList.remove('bg-primary', 'text-background');
+                    btn.classList.add('bg-surface-container', 'text-on-surface-variant');
+                }
+            });
+            renderPosts();
+        }
+
+        function handleSearch() {
+            renderPosts();
+        }
+
+        document.addEventListener('DOMContentLoaded', renderPosts);
+    </script>
+</body>
+</html>

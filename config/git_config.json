@@ -1,0 +1,6 @@
+{
+  "github_token": "YOUR_GITHUB_TOKEN",
+  "github_owner": "namu2forest",
+  "github_repo": "namu2forest",
+  "data_file_path": "data/posts.json"
+}

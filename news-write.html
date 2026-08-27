@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>게시글 작성/수정 - Namu Real Estate</title>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d1bcff",
+                        "surface": "#15121d",
+                        "background": "#15121d",
+                        "surface-container": "#211e2a",
+                        "border-glass": "rgba(255, 255, 255, 0.12)",
+                        "on-surface": "#e7dff0",
+                        "on-surface-variant": "#ccc3da",
+                        "outline-variant": "#4a4457"
+                    },
+                    spacing: {
+                        "container-max": "1280px",
+                        "margin-mobile": "16px"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-16 pb-24 md:pb-0 relative flex flex-col min-h-screen">
+    <header class="bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-border-glass shadow-none">
+        <div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-container-max mx-auto">
+            <a href="index.html" class="flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined">house</span>
+                <span class="font-bold text-on-surface">Namu Real Estate</span>
+            </a>
+            <a href="admin.html" class="text-sm text-on-surface-variant hover:text-primary">관리자 대시보드</a>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-3xl mx-auto w-full px-margin-mobile flex flex-col gap-6 pt-8 pb-16">
+        <div class="flex justify-between items-center border-b border-border-glass pb-4">
+            <h1 id="formTitle" class="text-2xl font-bold text-on-surface">새 게시글 작성</h1>
+            <a href="admin.html" class="text-sm text-on-surface-variant hover:underline">취소</a>
+        </div>
+
+        <form id="postForm" onsubmit="handleSave(event)" class="bg-surface-container p-6 rounded-xl border border-border-glass flex flex-col gap-4">
+            <input type="hidden" id="postId">
+            <div>
+                <label class="block text-sm font-medium text-on-surface-variant mb-1">제목</label>
+                <input type="text" id="postTitle" required class="w-full bg-background border border-border-glass rounded-lg px-4 py-2 text-sm text-on-surface focus:outline-none focus:border-primary">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-on-surface-variant mb-1">카테고리</label>
+                    <select id="postCategory" class="w-full bg-background border border-border-glass rounded-lg px-4 py-2 text-sm text-on-surface focus:outline-none focus:border-primary">
+                        <option value="공지사항">공지사항</option>
+                        <option value="매물정보">매물정보</option>
+                        <option value="부동산뉴스">부동산뉴스</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-on-surface-variant mb-1">작성자</label>
+                    <input type="text" id="postAuthor" value="서주용 대표" class="w-full bg-background border border-border-glass rounded-lg px-4 py-2 text-sm text-on-surface focus:outline-none focus:border-primary">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-on-surface-variant mb-1">요약 (선택)</label>
+                <input type="text" id="postSummary" placeholder="목록에 표시될 간략한 설명" class="w-full bg-background border border-border-glass rounded-lg px-4 py-2 text-sm text-on-surface focus:outline-none focus:border-primary">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-on-surface-variant mb-1">본문 (Markdown 지원)</label>
+                <textarea id="postContent" rows="12" required placeholder="마크다운 문법으로 작성할 수 있습니다." class="w-full bg-background border border-border-glass rounded-lg p-4 text-sm text-on-surface focus:outline-none focus:border-primary font-mono"></textarea>
+            </div>
+
+            <div class="flex justify-end gap-3 mt-4">
+                <a href="admin.html" class="px-5 py-2 rounded-lg border border-border-glass text-sm font-medium hover:bg-surface-variant">취소</a>
+                <button type="submit" class="px-6 py-2 rounded-lg bg-primary text-background font-bold text-sm hover:opacity-90">저장하기</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="db.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            if (id) {
+                const post = window.postDB.getPostById(id);
+                if (post) {
+                    document.getElementById('formTitle').innerText = '게시글 수정';
+                    document.getElementById('postId').value = post.id;
+                    document.getElementById('postTitle').value = post.title;
+                    document.getElementById('postCategory').value = post.category || '공지사항';
+                    document.getElementById('postAuthor').value = post.author || '서주용 대표';
+                    document.getElementById('postSummary').value = post.summary || '';
+                    document.getElementById('postContent').value = post.content || '';
+                }
+            }
+        });
+
+        function handleSave(e) {
+            e.preventDefault();
+            const id = document.getElementById('postId').value;
+            const post = {
+                id: id || undefined,
+                title: document.getElementById('postTitle').value,
+                category: document.getElementById('postCategory').value,
+                author: document.getElementById('postAuthor').value,
+                summary: document.getElementById('postSummary').value,
+                content: document.getElementById('postContent').value
+            };
+
+            window.postDB.savePost(post);
+            alert('게시글이 성공적으로 저장되었습니다.');
+            window.location.href = 'admin.html';
+        }
+    </script>
+</body>
+</html>

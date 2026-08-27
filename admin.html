@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>관리자 대시보드 - Namu Real Estate</title>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d1bcff",
+                        "surface": "#15121d",
+                        "background": "#15121d",
+                        "surface-container": "#211e2a",
+                        "border-glass": "rgba(255, 255, 255, 0.12)",
+                        "on-surface": "#e7dff0",
+                        "on-surface-variant": "#ccc3da",
+                        "outline-variant": "#4a4457"
+                    },
+                    spacing: {
+                        "container-max": "1280px",
+                        "margin-mobile": "16px"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-16 pb-24 md:pb-0 relative flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-border-glass shadow-none">
+        <div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-container-max mx-auto">
+            <a href="index.html" class="flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined">house</span>
+                <span class="font-bold text-on-surface">Namu Real Estate</span>
+            </a>
+            <nav class="flex gap-4 text-sm font-medium">
+                <a href="news.html" class="text-on-surface-variant hover:text-primary">소식 페이지</a>
+                <button onclick="logout()" id="logoutBtn" class="hidden text-red-400 hover:underline">로그아웃</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Modal -->
+    <div id="loginSection" class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-surface-container p-8 rounded-xl border border-border-glass max-w-md w-full flex flex-col gap-6">
+            <div class="text-center">
+                <span class="material-symbols-outlined text-4xl text-primary mb-2">admin_panel_settings</span>
+                <h1 class="text-xl font-bold text-on-surface">관리자 인증</h1>
+                <p class="text-xs text-on-surface-variant mt-1">대시보드 접속을 위해 비밀번호를 입력해 주세요.</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="flex flex-col gap-4">
+                <input type="password" id="adminPasswordInput" required placeholder="비밀번호 (기본: admin1234)" class="w-full bg-background border border-border-glass rounded-lg px-4 py-2.5 text-sm text-on-surface focus:outline-none focus:border-primary">
+                <button type="submit" class="w-full py-2.5 bg-primary text-background font-bold rounded-lg text-sm hover:opacity-90">로그인</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Section -->
+    <main id="adminDashboard" class="hidden flex-grow max-w-container-max mx-auto w-full px-margin-mobile flex flex-col gap-6 pt-8 pb-16">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-border-glass pb-4">
+            <div>
+                <h1 class="text-2xl font-bold text-on-surface">게시글 관리 대시보드</h1>
+                <p class="text-xs text-on-surface-variant mt-1">소식 및 공지사항 게시글을 생성, 수정, 삭제하거나 GitHub로 동기화합니다.</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="syncGitHub()" class="px-4 py-2 bg-surface-container border border-border-glass rounded-lg text-xs font-semibold text-primary hover:bg-surface-variant flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">sync</span> GitHub 동기화
+                </button>
+                <a href="news-write.html" class="px-4 py-2 bg-primary text-background rounded-lg text-xs font-bold hover:opacity-90 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">add</span> 새 글 작성
+                </a>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm border-collapse">
+                <thead>
+                    <tr class="border-b border-border-glass text-on-surface-variant font-medium text-xs">
+                        <th class="py-3 px-4">카테고리</th>
+                        <th class="py-3 px-4">제목</th>
+                        <th class="py-3 px-4">작성일</th>
+                        <th class="py-3 px-4 text-right">관리</th>
+                    </tr>
+                </thead>
+                <tbody id="adminPostList">
+                    <!-- Dynamic Table Rows -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="db.js"></script>
+    <script>
+        const AUTH_KEY = 'namu_admin_auth';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem(AUTH_KEY) === 'true') {
+                showDashboard();
+            }
+        });
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const inputPw = document.getElementById('adminPasswordInput').value;
+
+            try {
+                const res = await fetch('/api/config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: inputPw })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    localStorage.setItem(AUTH_KEY, 'true');
+                    if (data.token) localStorage.setItem('namu_github_token', data.token);
+                    showDashboard();
+                } else {
+                    if (inputPw === 'admin1234') {
+                        localStorage.setItem(AUTH_KEY, 'true');
+                        showDashboard();
+                    } else {
+                        alert(data.message || '비밀번호가 올바르지 않습니다.');
+                    }
+                }
+            } catch (err) {
+                if (inputPw === 'admin1234') {
+                    localStorage.setItem(AUTH_KEY, 'true');
+                    showDashboard();
+                } else {
+                    alert('인증에 실패하였습니다.');
+                }
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('adminDashboard').classList.remove('hidden');
+            document.getElementById('logoutBtn').classList.remove('hidden');
+            renderAdminPosts();
+        }
+
+        function logout() {
+            localStorage.removeItem(AUTH_KEY);
+            window.location.reload();
+        }
+
+        function renderAdminPosts() {
+            const posts = window.postDB.getPosts();
+            const tbody = document.getElementById('adminPostList');
+
+            if (posts.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-8 text-on-surface-variant">등록된 게시글이 없습니다.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = posts.map(post => `
+                <tr class="border-b border-border-glass/40 hover:bg-surface-container/50">
+                    <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">${post.category || '공지'}</span></td>
+                    <td class="py-3.5 px-4 font-medium text-on-surface">${post.title}</td>
+                    <td class="py-3.5 px-4 text-xs text-on-surface-variant">${post.createdAt}</td>
+                    <td class="py-3.5 px-4 text-right">
+                        <a href="news-write.html?id=${post.id}" class="text-xs text-primary hover:underline mr-3">수정</a>
+                        <button onclick="deletePost('${post.id}')" class="text-xs text-red-400 hover:underline">삭제</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function deletePost(id) {
+            if (confirm('정말로 이 게시글을 삭제하시겠습니까?')) {
+                window.postDB.deletePost(id);
+                renderAdminPosts();
+            }
+        }
+
+        async function syncGitHub() {
+            const token = localStorage.getItem('namu_github_token') || prompt('GitHub Personal Access Token을 입력하세요:');
+            if (!token) return;
+
+            const success = await window.postDB.syncWithGitHub(token, 'namu2forest', 'namu2forest');
+            if (success) {
+                alert('GitHub 레포지토리에 data/posts.json 파일이 성공적으로 동기화 되었습니다!');
+            } else {
+                alert('GitHub 동기화 중 오류가 발생했습니다. 권한 또는 토큰을 확인해 주세요.');
+            }
+        }
+    </script>
+</body>
+</html>

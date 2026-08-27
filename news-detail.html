@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>게시글 보기 - Namu Real Estate</title>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d1bcff",
+                        "surface": "#15121d",
+                        "background": "#15121d",
+                        "surface-container": "#211e2a",
+                        "border-glass": "rgba(255, 255, 255, 0.12)",
+                        "on-surface": "#e7dff0",
+                        "on-surface-variant": "#ccc3da",
+                        "outline-variant": "#4a4457",
+                        "surface-container-lowest": "#100c17"
+                    },
+                    spacing: {
+                        "container-max": "1280px",
+                        "margin-mobile": "16px"
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-16 pb-24 md:pb-0 relative flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-border-glass shadow-none">
+        <div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-container-max mx-auto">
+            <a href="index.html" class="flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined">house</span>
+                <span class="font-bold text-on-surface">Namu Real Estate</span>
+            </a>
+            <nav class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="index.html" class="text-on-surface-variant hover:text-primary transition-colors">홈</a>
+                <a href="news.html" class="text-primary font-bold">소식 & 공지</a>
+                <a href="admin.html" class="text-on-surface-variant hover:text-primary transition-colors">관리자</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-3xl mx-auto w-full px-margin-mobile flex flex-col gap-6 pt-8 pb-16">
+        <a href="news.html" class="inline-flex items-center gap-1 text-sm text-primary hover:underline">
+            <span class="material-symbols-outlined text-sm">arrow_back</span> 목록으로 돌아가기
+        </a>
+
+        <article id="articleContainer" class="bg-surface-container p-8 rounded-xl border border-border-glass flex flex-col gap-6">
+            <!-- Article content dynamically loaded -->
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest border-t border-outline-variant py-12 px-margin-mobile">
+        <div class="max-w-container-max mx-auto flex flex-col gap-4">
+            <p class="text-xs text-on-surface-variant">© 2026 Namu Real Estate. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="db.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const container = document.getElementById('articleContainer');
+
+            if (!id) {
+                container.innerHTML = `<div class="text-center py-8 text-on-surface-variant">게시글을 찾을 수 없습니다.</div>`;
+                return;
+            }
+
+            const post = window.postDB.getPostById(id);
+            if (!post) {
+                container.innerHTML = `<div class="text-center py-8 text-on-surface-variant">존재하지 않거나 삭제된 게시글입니다.</div>`;
+                return;
+            }
+
+            const contentHtml = marked.parse(post.content || '');
+
+            container.innerHTML = `
+                <div class="border-b border-border-glass pb-4 flex flex-col gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">${post.category || '공지'}</span>
+                        <span class="text-xs text-on-surface-variant">${post.createdAt}</span>
+                        <span class="text-xs text-on-surface-variant">작성자: ${post.author || '관리자'}</span>
+                    </div>
+                    <h1 class="text-2xl md:text-3xl font-bold text-on-surface mt-2">${post.title}</h1>
+                </div>
+                <div class="prose prose-invert max-w-none text-on-surface-variant leading-relaxed text-sm md:text-base">
+                    ${contentHtml}
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
