@@ -5,5 +5,11 @@
     <link>https://namu2forest.vercel.app</link>
     <description>나무2숲 공식 웹사이트입니다.</description>
     <language>ko-KR</language>
+    <item>
+      <title>나무2숲 메인 페이지</title>
+      <link>https://namu2forest.vercel.app/</link>
+      <description>나무2숲 메인 홈페이지입니다.</description>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 +0900</pubDate>
+    </item>
   </channel>
 </rss>
