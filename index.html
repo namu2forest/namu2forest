@@ -175,124 +175,133 @@
         }
     </script>
 </head>
-<body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-16 pb-24 md:pb-0 relative flex flex-col min-h-screen">
-    <!-- TopAppBar -->
-    <header class="bg-white/95 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-[#E8EFEA] shadow-sm transition-all duration-300">
-        <div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-container-max mx-auto">
-            <div class="flex items-center gap-2 text-primary">
-                <span class="material-symbols-outlined font-headline-sm text-headline-sm">house</span>
-                <span class="font-headline-sm text-headline-sm font-bold text-primary">Namu Real Estate</span>
-            </div>
-            <nav class="hidden md:flex gap-6 text-sm font-medium">
-                <a href="index.html" class="text-primary font-bold">홈</a>
-                <a href="news.html" class="text-on-surface-variant hover:text-primary transition-colors">소식 & 공지</a>
-                <a href="admin.html" class="text-on-surface-variant hover:text-primary transition-colors">관리자</a>
-            </nav>
+<body class="min-h-screen bg-[#F9FAF9] text-[#1A201C] font-sans overflow-x-hidden relative flex flex-col justify-between">
+
+  <!-- GNB (상단바) -->
+  <header class="sticky top-0 z-50 bg-[#F9FAF9]/90 backdrop-blur-md border-b border-[#114B33]/10 px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-bold text-[#114B33] flex items-center gap-2 hover:opacity-90 transition-opacity">
+      <span class="w-3 h-3 rounded-full bg-[#114B33]"></span>
+      나무공인중개사사무소
+    </a>
+    <div class="flex items-center gap-6">
+      <nav class="hidden md:flex gap-6 text-sm font-medium">
+        <a href="index.html" class="text-[#114B33] font-bold">홈</a>
+        <a href="news.html" class="text-[#1A201C]/80 hover:text-[#114B33] transition-colors">소식 & 공지</a>
+        <a href="admin.html" class="text-[#1A201C]/80 hover:text-[#114B33] transition-colors">관리자</a>
+      </nav>
+      <a href="tel:01056352684" class="bg-[#C29046] hover:bg-[#B08038] text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-sm flex items-center gap-1.5">
+        📞 전화 문의
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold text-[#114B33] mb-3">
+        믿음직한 파트너, 동탄 나무 부동산
+      </h1>
+      <p class="text-base md:text-lg text-[#1A201C]/80">
+        안전하고 투명한 부동산 거래, 2040을 위한 디테일한 맞춤 상담이 시작됩니다.
+      </p>
+    </div>
+
+    <!-- 메인 이미지 파트 (Sage Green Border 적용) -->
+    <div class="bg-[#E8EFEA] p-3 rounded-2xl border border-[#114B33]/20 shadow-sm mb-10">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlk8L2-aiUfqbeJGTKYpS1wGqG37NpwFjKapyuFyKgPZPy2VI-fZi4Az0oYAG8AeubJjahOA28899GDLKRYfG0XV35s_juBbggkkcX5hhAJW16eerfyRp89c9Dl2-yo5rB9G_AjuujcOBm7N1ifHc3KNPj2b4z6K_ftdMh0WqMCI636KjV3D3eQDBlTnXLRlwp6Cl3LaG6q76ynCeFxUA04tqZzxGzO8w7UyqItM2a_w8wnJHr7_8cOA" alt="나무부동산 내관" class="w-full h-80 object-cover rounded-xl" />
+    </div>
+
+    <!-- 투트랙 CTA 카드리스트 (Track A & Track B) -->
+    <div class="grid md:grid-cols-2 gap-6 mb-10">
+      
+      <!-- Track A: 전화 상담 카드 (Accent Gold 적용) -->
+      <div class="bg-[#E8EFEA] p-6 rounded-2xl border border-[#114B33]/15 flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-lg bg-[#C29046]/15 text-[#C29046] flex items-center justify-center font-bold mb-4 text-xl">📞</div>
+          <h3 class="text-xl font-semibold text-[#114B33] mb-2">빠른 전화 상담</h3>
+          <p class="text-sm text-[#1A201C]/80 mb-6">급하게 매물을 찾거나 즉시 통화로 디테일한 상담을 원하시는 분</p>
         </div>
-    </header>
+        <a href="tel:01056352684" class="w-full bg-[#C29046] hover:bg-[#B08038] text-white font-bold py-3 rounded-xl text-center transition-all block shadow-md">
+          010-5635-2684 바로 연결
+        </a>
+      </div>
 
-    <main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile flex flex-col gap-8 md:gap-16 pt-8">
-        <!-- Hero Section -->
-        <section class="flex flex-col items-center justify-center text-center py-12 px-4 rounded-xl border border-[#E8EFEA] bg-white shadow-sm">
-            <h1 class="font-display-lg-mobile md:font-display-lg text-primary mb-4">
-                <span style="font-size: inherit; font-weight: inherit;">믿음직한 파트너</span>
-                <div>동탄 나무 부동산</div>
-            </h1>
-            <p class="font-body-lg text-on-surface-variant max-w-md mx-auto mb-8">안전하고 투명한 부동산 거래,<br>나무 부동산이 함께합니다.</p>
-            <div class="w-full max-w-2xl rounded-xl overflow-hidden border border-[#E8EFEA] relative aspect-video shadow-sm">
-                <img class="absolute inset-0 w-full h-full object-cover" alt="Real Estate Office Interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlk8L2-aiUfqbeJGTKYpS1wGqG37NpwFjKapyuFyKgPZPy2VI-fZi4Az0oYAG8AeubJjahOA28899GDLKRYfG0XV35s_juBbggkkcX5hhAJW16eerfyRp89c9Dl2-yo5rB9G_AjuujcOBm7N1ifHc3KNPj2b4z6K_ftdMh0WqMCI636KjV3D3eQDBlTnXLRlwp6Cl3LaG6q76ynCeFxUA04tqZzxGzO8w7UyqItM2a_w8wnJHr7_8cOA">
-            </div>
-        </section>
+      <!-- Track B: 구글폼 정밀 작성 카드 (Forest Green 적용) -->
+      <div class="bg-[#E8EFEA] p-6 rounded-2xl border border-[#114B33]/15 flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-lg bg-[#114B33]/15 text-[#114B33] flex items-center justify-center font-bold mb-4 text-xl">📝</div>
+          <h3 class="text-xl font-semibold text-[#114B33] mb-2">구글폼 정밀 상담</h3>
+          <p class="text-sm text-[#1A201C]/80 mb-6">희망 예산과 조건을 남겨주시면 꼼꼼히 분석 후 1:1 안내드립니다</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="https://forms.gle/JHajDSXokoqGjtC9A" target="_blank" rel="noopener noreferrer" class="flex-1 bg-[#114B33] hover:bg-[#0D3A27] text-white font-bold py-3 rounded-xl text-center transition-all block shadow-md text-sm">
+            매물 접수하기
+          </a>
+          <a href="https://forms.gle/CVmJcnUD5yUcLXrDA" target="_blank" rel="noopener noreferrer" class="flex-1 bg-[#114B33] hover:bg-[#0D3A27] text-white font-bold py-3 rounded-xl text-center transition-all block shadow-md text-sm">
+            매물 구하기
+          </a>
+        </div>
+      </div>
 
-        <!-- Services Bento Grid -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-white p-6 rounded-xl border border-[#E8EFEA] shadow-sm flex flex-col gap-4 group hover:border-primary/40 hover:shadow-md transition-all duration-300">
-                <div class="w-12 h-12 rounded-full bg-[#E8EFEA] flex items-center justify-center text-primary">
-                    <span class="material-symbols-outlined">assignment</span>
-                </div>
-                <h3 class="font-headline-sm text-primary">매물 접수 / 구함</h3>
-                <p class="font-body-md text-on-surface flex-grow">신속하고 정확하게 매물을 등록하거나 찾아드립니다.<br>아파트, 오피스텔, 주택, 상가, 사무실 등<div>다양한 매물을 취급합니다.</div></p>
-                <div class="flex flex-wrap gap-3 mt-4">
-                    <a class="inline-flex items-center px-4 py-2.5 rounded-lg bg-primary hover:bg-[#0D3A27] text-white font-medium text-sm transition-colors shadow-sm" href="https://forms.gle/JHajDSXokoqGjtC9A" target="_blank" rel="noopener noreferrer">
-                        매물 접수하기 <span class="material-symbols-outlined ml-1.5 text-base">open_in_new</span>
-                    </a>
-                    <a class="inline-flex items-center px-4 py-2.5 rounded-lg bg-primary hover:bg-[#0D3A27] text-white font-medium text-sm transition-colors shadow-sm" href="https://forms.gle/CVmJcnUD5yUcLXrDA" target="_blank" rel="noopener noreferrer">
-                        매물 구하기 <span class="material-symbols-outlined ml-1.5 text-base">open_in_new</span>
-                    </a>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-xl border border-[#E8EFEA] shadow-sm flex flex-col gap-4 group hover:border-[#C29046]/40 hover:shadow-md transition-all duration-300">
-                <div class="w-12 h-12 rounded-full bg-[#E8EFEA] flex items-center justify-center text-primary">
-                    <span class="material-symbols-outlined">support_agent</span>
-                </div>
-                <h3 class="font-headline-sm text-primary">상담 문의</h3>
-                <p class="font-body-md text-on-surface flex-grow">부동산 관련 궁금한 점이 있으신가요?<div>친절하고 전문적인 상담을 제공합니다.</div></p>
-                <div class="mt-4">
-                    <a class="inline-flex items-center px-5 py-2.5 rounded-lg bg-[#C29046] hover:bg-[#b0813c] text-white font-bold text-sm shadow-sm transition-colors" href="tel:010-5635-2684">
-                        <span class="material-symbols-outlined mr-1.5 text-base">call</span>전화연결 <span class="material-symbols-outlined ml-1.5 text-base">arrow_forward</span>
-                    </a>
-                </div>
-            </div>
-        </section>
+    </div>
 
-        <!-- Realtor Profile -->
-        <section class="bg-white rounded-xl border border-[#E8EFEA] shadow-sm p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6">
-            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-primary shrink-0 relative">
-                <img class="absolute inset-0 w-full h-full object-cover" alt="Representative Real Estate Agent" src="./프로필사진_나무_ai.png">
-            </div>
-            <div class="text-center md:text-left flex-grow">
-                <span class="inline-block px-3 py-1 rounded-full bg-[#E8EFEA] text-primary font-label-sm font-semibold mb-2">대표 공인중개사</span>
-                <h2 class="font-headline-md text-primary mb-2">서주용</h2>
-                <p class="font-body-md text-on-surface mb-4">투자자산운용사 자격을 보유한<div>동탄 지역 부동산 전문가로,<div>고객님의 소중한 자산을</div><div>안전하게 관리합니다.</div></div></p>
-                <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span class="px-3 py-1 rounded-md border border-[#E8EFEA] bg-[#F9FAF9] text-on-surface font-label-sm font-medium">주거용</span>
-                    <span class="px-3 py-1 rounded-md border border-[#E8EFEA] bg-[#F9FAF9] text-on-surface font-label-sm font-medium">상업용</span>
-                    <span class="px-3 py-1 rounded-md border border-[#E8EFEA] bg-[#F9FAF9] text-on-surface font-label-sm font-medium">투자상담</span>
-                </div>
-            </div>
-        </section>
-
-        <div class="h-8"></div> <!-- Spacer -->
-    </main>
-
-    <!-- BottomNavBar / Footer -->
-    <footer class="bg-white border-t border-[#E8EFEA] py-12 px-margin-mobile md:px-margin-desktop pb-32 md:pb-12">
-        <div class="max-w-container-max mx-auto flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary w-8 text-[20px] flex items-center">call</span>
-                    <a href="tel:010-5635-2684" class="font-body-sm text-on-surface hover:text-primary transition-colors">010-5635-2684</a>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary w-8 text-[20px] flex items-center">mail</span>
-                        <a href="mailto:namu2forest@gmail.com" class="font-body-sm text-on-surface hover:text-primary transition-colors">namu2forest@gmail.com</a>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary w-8 text-[20px] flex items-center">link</span>
-                    <a href="https://blog.naver.com/namu_re" target="_blank" class="font-body-sm text-on-surface hover:text-primary transition-colors">blog.naver.com/namu2forest</a>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary w-8 text-[20px] flex items-center">location_on</span>
-                    <span class="font-body-sm text-on-surface">경기도 화성시 동탄구 동탄기흥로 447-20<br>동탄역유퍼스트 1층 112호</span>
-                </div>
-            </div>
-            <div class="mt-4 pt-4 border-t border-[#E8EFEA]">
-                <p class="text-label-sm text-on-surface-variant">© 2026 Namu Real Estate. All rights reserved.</p>
+    <!-- Realtor Profile -->
+    <section class="bg-[#E8EFEA] rounded-2xl border border-[#114B33]/15 p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-sm">
+        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-[#114B33] shrink-0 relative">
+            <img class="absolute inset-0 w-full h-full object-cover" alt="Representative Real Estate Agent" src="./프로필사진_나무_ai.png">
+        </div>
+        <div class="text-center md:text-left flex-grow">
+            <span class="inline-block px-3 py-1 rounded-full bg-white text-[#114B33] font-medium text-xs mb-2 border border-[#114B33]/20 shadow-xs">대표 공인중개사</span>
+            <h2 class="text-2xl font-bold text-[#114B33] mb-2">서주용</h2>
+            <p class="text-sm text-[#1A201C]/80 mb-4">투자자산운용사 자격을 보유한 동탄 지역 부동산 전문가로, 고객님의 소중한 자산을 안전하게 관리합니다.</p>
+            <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                <span class="px-3 py-1 rounded-lg border border-[#114B33]/15 bg-white text-[#1A201C] text-xs font-medium">주거용</span>
+                <span class="px-3 py-1 rounded-lg border border-[#114B33]/15 bg-white text-[#1A201C] text-xs font-medium">상업용</span>
+                <span class="px-3 py-1 rounded-lg border border-[#114B33]/15 bg-white text-[#1A201C] text-xs font-medium">투자상담</span>
             </div>
         </div>
-    </footer>
+    </section>
+  </main>
 
-    <nav class="md:hidden bg-white/95 backdrop-blur-xl fixed bottom-0 w-full z-50 rounded-t-2xl border-t border-[#E8EFEA] shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-margin-mobile py-3 flex justify-around items-center">
-        <a class="flex flex-col items-center justify-center bg-[#C29046] text-white font-bold rounded-full px-6 py-2 active:scale-95 transition-transform shadow-md hover:bg-[#b0813c]" href="tel:010-5635-2684">
-            <span class="material-symbols-outlined text-xl mb-0.5">call</span>
-            <span class="font-label-sm text-xs">전화 연결</span>
-        </a>
-        <a class="flex flex-col items-center justify-center text-primary hover:bg-[#E8EFEA]/60 active:scale-95 transition-transform rounded-xl px-5 py-2 font-medium" href="news.html">
-            <span class="material-symbols-outlined text-xl mb-0.5">newspaper</span>
-            <span class="font-label-sm text-xs">소식 & 공지</span>
-        </a>
-    </nav>
+  <!-- Footer -->
+  <footer class="bg-white border-t border-[#114B33]/10 py-12 px-6 pb-28 md:pb-12">
+      <div class="max-w-4xl mx-auto flex flex-col gap-4">
+          <div class="flex flex-col gap-2">
+              <div class="flex items-center gap-2">
+                  <span class="text-[#114B33] font-bold text-sm">📞</span>
+                  <a href="tel:01056352684" class="text-sm text-[#1A201C] hover:text-[#114B33] transition-colors">010-5635-2684</a>
+              </div>
+              <div class="flex items-center gap-2">
+                  <span class="text-[#114B33] font-bold text-sm">✉️</span>
+                  <a href="mailto:namu2forest@gmail.com" class="text-sm text-[#1A201C] hover:text-[#114B33] transition-colors">namu2forest@gmail.com</a>
+              </div>
+              <div class="flex items-center gap-2">
+                  <span class="text-[#114B33] font-bold text-sm">🔗</span>
+                  <a href="https://blog.naver.com/namu_re" target="_blank" rel="noopener noreferrer" class="text-sm text-[#1A201C] hover:text-[#114B33] transition-colors">blog.naver.com/namu2forest</a>
+              </div>
+              <div class="flex items-center gap-2">
+                  <span class="text-[#114B33] font-bold text-sm">📍</span>
+                  <span class="text-sm text-[#1A201C]">경기도 화성시 동탄구 동탄기흥로 447-20 동탄역유퍼스트 1층 112호</span>
+              </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-[#114B33]/10 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-[#1A201C]/60">
+              <p>© 2026 나무공인중개사사무소 (Namu Real Estate). All rights reserved.</p>
+              <div class="flex gap-4">
+                <a href="news.html" class="hover:text-[#114B33]">소식 & 공지</a>
+                <a href="admin.html" class="hover:text-[#114B33]">관리자</a>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+  <!-- 모바일 하단 고정 플로팅 바 (Mobile Floating CTA) -->
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#114B33]/10 p-3 grid grid-cols-2 gap-3 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+    <a href="tel:01056352684" class="bg-[#C29046] text-white font-bold py-3 rounded-lg text-center text-sm flex items-center justify-center gap-1.5 shadow-sm">
+      📞 전화 연결
+    </a>
+    <a href="https://forms.gle/JHajDSXokoqGjtC9A" target="_blank" rel="noopener noreferrer" class="bg-[#114B33] text-white font-bold py-3 rounded-lg text-center text-sm flex items-center justify-center gap-1.5 shadow-sm">
+      📝 정밀 폼 작성
+    </a>
+  </div>
 </body>
 </html>
