@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="ko">
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -91,61 +91,49 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#d1bcff",
-                        "bg-deep": "#07060a",
-                        "surface-container-low": "#181324",
-                        "on-surface-variant": "#dfd7eb",
-                        "error-container": "#93000a",
-                        "surface-dim": "#07060a",
-                        "primary-container": "#7000ff",
-                        "surface-variant": "#2e2640",
-                        "surface": "#120e1a",
-                        "on-primary-fixed-variant": "#5700c9",
-                        "surface-container-high": "#2e2640",
-                        "on-background": "#f1ebf8",
-                        "on-tertiary": "#5a1c00",
-                        "inverse-primary": "#7212ff",
-                        "error": "#ffb4ab",
-                        "on-secondary-fixed": "#002022",
-                        "primary-fixed-dim": "#d1bcff",
-                        "secondary-fixed": "#7df4ff",
-                        "on-primary": "#3c0090",
-                        "background": "#07060a",
-                        "on-error-container": "#ffdad6",
-                        "on-error": "#690005",
-                        "tertiary-container": "#a23900",
-                        "secondary-fixed-dim": "#00dbe9",
-                        "secondary": "#d3fbff",
-                        "surface-container": "#231c33",
-                        "tertiary": "#ffb599",
-                        "surface-glass": "rgba(35, 28, 51, 0.7)",
-                        "on-primary-fixed": "#23005b",
-                        "inverse-surface": "#e7dff0",
-                        "outline": "#958da3",
-                        "on-tertiary-fixed-variant": "#7f2b00",
-                        "glow-purple": "#A855F7",
-                        "surface-tint": "#d1bcff",
-                        "tertiary-fixed-dim": "#ffb599",
-                        "border-glass": "#4e426d",
-                        "on-secondary-fixed-variant": "#004f54",
-                        "on-secondary-container": "#00686f",
-                        "surface-container-highest": "#382e4e",
-                        "on-tertiary-fixed": "#370e00",
-                        "surface-bright": "#43375c",
-                        "primary-fixed": "#e9ddff",
-                        "outline-variant": "#594d75",
-                        "tertiary-fixed": "#ffdbce",
-                        "inverse-on-surface": "#332e3b",
-                        "on-primary-container": "#ddcdff",
-                        "secondary-container": "#00eefc",
-                        "on-secondary": "#00363a",
-                        "on-surface": "#f1ebf8",
-                        "on-tertiary-container": "#ffc8b4",
-                        "surface-container-lowest": "#07060a"
+                        "primary": "#114B33",
+                        "bg-deep": "#F9FAF9",
+                        "surface-container-low": "#F9FAF9",
+                        "on-surface-variant": "#4A554E",
+                        "error-container": "#FDE8E8",
+                        "surface-dim": "#F4F6F4",
+                        "primary-container": "#114B33",
+                        "surface-variant": "#E8EFEA",
+                        "surface": "#FFFFFF",
+                        "on-primary-fixed-variant": "#114B33",
+                        "surface-container-high": "#F4F6F4",
+                        "on-background": "#1A201C",
+                        "on-tertiary": "#FFFFFF",
+                        "inverse-primary": "#114B33",
+                        "error": "#E02424",
+                        "primary-fixed-dim": "#114B33",
+                        "secondary-fixed": "#E8EFEA",
+                        "on-primary": "#FFFFFF",
+                        "background": "#F9FAF9",
+                        "on-error-container": "#9B1C1C",
+                        "on-error": "#FFFFFF",
+                        "secondary": "#E8EFEA",
+                        "surface-container": "#FFFFFF",
+                        "tertiary": "#C29046",
+                        "surface-glass": "rgba(255, 255, 255, 0.9)",
+                        "on-primary-fixed": "#FFFFFF",
+                        "inverse-surface": "#1A201C",
+                        "outline": "#C8D5CC",
+                        "border-glass": "#E8EFEA",
+                        "surface-container-highest": "#E8EFEA",
+                        "surface-bright": "#FFFFFF",
+                        "primary-fixed": "#114B33",
+                        "outline-variant": "#E8EFEA",
+                        "tertiary-fixed": "#C29046",
+                        "on-primary-container": "#FFFFFF",
+                        "secondary-container": "#C29046",
+                        "on-secondary-container": "#FFFFFF",
+                        "on-secondary": "#1A201C",
+                        "on-surface": "#1A201C",
+                        "surface-container-lowest": "#FFFFFF"
                     },
                     borderRadius: {
                         "DEFAULT": "0.25rem",
@@ -189,11 +177,11 @@
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden pt-16 pb-24 md:pb-0 relative flex flex-col min-h-screen">
     <!-- TopAppBar -->
-    <header class="bg-[#241d34]/95 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-[#5a4d7d] shadow-[0_4px_25px_rgba(0,0,0,0.9)] transition-all duration-300">
+    <header class="bg-white/95 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-[#E8EFEA] shadow-sm transition-all duration-300">
         <div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-container-max mx-auto">
             <div class="flex items-center gap-2 text-primary">
                 <span class="material-symbols-outlined font-headline-sm text-headline-sm">house</span>
-                <span class="font-headline-sm text-headline-sm font-bold text-on-surface dark:text-on-surface">Namu Real Estate</span>
+                <span class="font-headline-sm text-headline-sm font-bold text-primary">Namu Real Estate</span>
             </div>
             <nav class="hidden md:flex gap-6 text-sm font-medium">
                 <a href="index.html" class="text-primary font-bold">홈</a>
@@ -205,61 +193,61 @@
 
     <main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile flex flex-col gap-8 md:gap-16 pt-8">
         <!-- Hero Section -->
-        <section class="flex flex-col items-center justify-center text-center py-12 px-4 rounded-xl border border-border-glass bg-surface-glass backdrop-blur-[20px]">
-            <h1 class="font-display-lg-mobile md:font-display-lg text-on-surface mb-4">
+        <section class="flex flex-col items-center justify-center text-center py-12 px-4 rounded-xl border border-[#E8EFEA] bg-white shadow-sm">
+            <h1 class="font-display-lg-mobile md:font-display-lg text-primary mb-4">
                 <span style="font-size: inherit; font-weight: inherit;">믿음직한 파트너</span>
                 <div>동탄 나무 부동산</div>
             </h1>
             <p class="font-body-lg text-on-surface-variant max-w-md mx-auto mb-8">안전하고 투명한 부동산 거래,<br>나무 부동산이 함께합니다.</p>
-            <div class="w-full max-w-2xl rounded-xl overflow-hidden border border-border-glass relative aspect-video">
+            <div class="w-full max-w-2xl rounded-xl overflow-hidden border border-[#E8EFEA] relative aspect-video shadow-sm">
                 <img class="absolute inset-0 w-full h-full object-cover" alt="Real Estate Office Interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlk8L2-aiUfqbeJGTKYpS1wGqG37NpwFjKapyuFyKgPZPy2VI-fZi4Az0oYAG8AeubJjahOA28899GDLKRYfG0XV35s_juBbggkkcX5hhAJW16eerfyRp89c9Dl2-yo5rB9G_AjuujcOBm7N1ifHc3KNPj2b4z6K_ftdMh0WqMCI636KjV3D3eQDBlTnXLRlwp6Cl3LaG6q76ynCeFxUA04tqZzxGzO8w7UyqItM2a_w8wnJHr7_8cOA">
-                <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
             </div>
         </section>
 
         <!-- Services Bento Grid -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-surface-container p-6 rounded-xl border border-border-glass flex flex-col gap-4 group hover:bg-surface-variant/50 transition-all duration-300">
-                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <div class="bg-white p-6 rounded-xl border border-[#E8EFEA] shadow-sm flex flex-col gap-4 group hover:border-primary/40 hover:shadow-md transition-all duration-300">
+                <div class="w-12 h-12 rounded-full bg-[#E8EFEA] flex items-center justify-center text-primary">
                     <span class="material-symbols-outlined">assignment</span>
                 </div>
-                <h3 class="font-headline-sm text-on-surface">매물 접수 / 구함</h3>
-                <p class="font-body-md text-on-surface-variant flex-grow">신속하고 정확하게 매물을 등록하거나 찾아드립니다.<br>아파트, 오피스텔, 주택, 상가, 사무실 등<div>다양한 매물을 취급합니다.</div></p>
+                <h3 class="font-headline-sm text-primary">매물 접수 / 구함</h3>
+                <p class="font-body-md text-on-surface flex-grow">신속하고 정확하게 매물을 등록하거나 찾아드립니다.<br>아파트, 오피스텔, 주택, 상가, 사무실 등<div>다양한 매물을 취급합니다.</div></p>
                 <div class="flex flex-wrap gap-3 mt-4">
-                    <a class="inline-flex items-center text-primary font-label-md hover:underline" href="https://forms.gle/JHajDSXokoqGjtC9A" target="_blank" rel="noopener noreferrer">
-                        매물 접수하기 <span class="material-symbols-outlined ml-1 text-sm">open_in_new</span>
+                    <a class="inline-flex items-center px-4 py-2.5 rounded-lg bg-primary hover:bg-[#0D3A27] text-white font-medium text-sm transition-colors shadow-sm" href="https://forms.gle/JHajDSXokoqGjtC9A" target="_blank" rel="noopener noreferrer">
+                        매물 접수하기 <span class="material-symbols-outlined ml-1.5 text-base">open_in_new</span>
                     </a>
-                    <span class="text-on-surface-variant/40">|</span>
-                    <a class="inline-flex items-center text-primary font-label-md hover:underline" href="https://forms.gle/CVmJcnUD5yUcLXrDA" target="_blank" rel="noopener noreferrer">
-                        매물 구하기 <span class="material-symbols-outlined ml-1 text-sm">open_in_new</span>
+                    <a class="inline-flex items-center px-4 py-2.5 rounded-lg bg-primary hover:bg-[#0D3A27] text-white font-medium text-sm transition-colors shadow-sm" href="https://forms.gle/CVmJcnUD5yUcLXrDA" target="_blank" rel="noopener noreferrer">
+                        매물 구하기 <span class="material-symbols-outlined ml-1.5 text-base">open_in_new</span>
                     </a>
                 </div>
             </div>
-            <div class="bg-surface-container p-6 rounded-xl border border-border-glass flex flex-col gap-4 group hover:bg-surface-variant/50 transition-all duration-300">
-                <div class="w-12 h-12 rounded-full bg-secondary-container/10 flex items-center justify-center text-secondary-container">
+            <div class="bg-white p-6 rounded-xl border border-[#E8EFEA] shadow-sm flex flex-col gap-4 group hover:border-[#C29046]/40 hover:shadow-md transition-all duration-300">
+                <div class="w-12 h-12 rounded-full bg-[#E8EFEA] flex items-center justify-center text-primary">
                     <span class="material-symbols-outlined">support_agent</span>
                 </div>
-                <h3 class="font-headline-sm text-on-surface">상담 문의</h3>
-                <p class="font-body-md text-on-surface-variant flex-grow">부동산 관련 궁금한 점이 있으신가요?<div>친절하고 전문적인 상담을 제공합니다.</div></p>
-                <a class="inline-flex items-center text-secondary-container font-label-md mt-4 group-hover:opacity-80" href="tel:010-5635-2684">
-                    전화연결 <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
-                </a>
+                <h3 class="font-headline-sm text-primary">상담 문의</h3>
+                <p class="font-body-md text-on-surface flex-grow">부동산 관련 궁금한 점이 있으신가요?<div>친절하고 전문적인 상담을 제공합니다.</div></p>
+                <div class="mt-4">
+                    <a class="inline-flex items-center px-5 py-2.5 rounded-lg bg-[#C29046] hover:bg-[#b0813c] text-white font-bold text-sm shadow-sm transition-colors" href="tel:010-5635-2684">
+                        <span class="material-symbols-outlined mr-1.5 text-base">call</span>전화연결 <span class="material-symbols-outlined ml-1.5 text-base">arrow_forward</span>
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- Realtor Profile -->
-        <section class="bg-surface-glass backdrop-blur-[20px] rounded-xl border border-border-glass p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6">
+        <section class="bg-white rounded-xl border border-[#E8EFEA] shadow-sm p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6">
             <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-primary shrink-0 relative">
                 <img class="absolute inset-0 w-full h-full object-cover" alt="Representative Real Estate Agent" src="./프로필사진_나무_ai.png">
             </div>
             <div class="text-center md:text-left flex-grow">
-                <span class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary font-label-sm mb-2">대표 공인중개사</span>
-                <h2 class="font-headline-md text-on-surface mb-2">서주용</h2>
-                <p class="font-body-md text-on-surface-variant mb-4">투자자산운용사 자격을 보유한<div>동탄 지역 부동산 전문가로,<div>고객님의 소중한 자산을</div><div>안전하게 관리합니다.</div></div></p>
+                <span class="inline-block px-3 py-1 rounded-full bg-[#E8EFEA] text-primary font-label-sm font-semibold mb-2">대표 공인중개사</span>
+                <h2 class="font-headline-md text-primary mb-2">서주용</h2>
+                <p class="font-body-md text-on-surface mb-4">투자자산운용사 자격을 보유한<div>동탄 지역 부동산 전문가로,<div>고객님의 소중한 자산을</div><div>안전하게 관리합니다.</div></div></p>
                 <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span class="px-3 py-1 rounded-md border border-border-glass text-on-surface-variant font-label-sm">주거용</span>
-                    <span class="px-3 py-1 rounded-md border border-border-glass text-on-surface-variant font-label-sm">상업용</span>
-                    <span class="px-3 py-1 rounded-md border border-border-glass text-on-surface-variant font-label-sm">투자상담</span>
+                    <span class="px-3 py-1 rounded-md border border-[#E8EFEA] bg-[#F9FAF9] text-on-surface font-label-sm font-medium">주거용</span>
+                    <span class="px-3 py-1 rounded-md border border-[#E8EFEA] bg-[#F9FAF9] text-on-surface font-label-sm font-medium">상업용</span>
+                    <span class="px-3 py-1 rounded-md border border-[#E8EFEA] bg-[#F9FAF9] text-on-surface font-label-sm font-medium">투자상담</span>
                 </div>
             </div>
         </section>
@@ -268,40 +256,40 @@
     </main>
 
     <!-- BottomNavBar / Footer -->
-    <footer class="bg-surface-container-lowest border-t border-outline-variant py-12 px-margin-mobile md:px-margin-desktop pb-32 md:pb-12">
+    <footer class="bg-white border-t border-[#E8EFEA] py-12 px-margin-mobile md:px-margin-desktop pb-32 md:pb-12">
         <div class="max-w-container-max mx-auto flex flex-col gap-4">
             <div class="flex flex-col gap-2">
                 <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-on-surface-variant w-8 text-[20px] flex items-center">call</span>
+                    <span class="material-symbols-outlined text-primary w-8 text-[20px] flex items-center">call</span>
                     <a href="tel:010-5635-2684" class="font-body-sm text-on-surface hover:text-primary transition-colors">010-5635-2684</a>
                 </div>
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-on-surface-variant w-8 text-[20px] flex items-center">mail</span>
+                        <span class="material-symbols-outlined text-primary w-8 text-[20px] flex items-center">mail</span>
                         <a href="mailto:namu2forest@gmail.com" class="font-body-sm text-on-surface hover:text-primary transition-colors">namu2forest@gmail.com</a>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-on-surface-variant w-8 text-[20px] flex items-center">link</span>
+                    <span class="material-symbols-outlined text-primary w-8 text-[20px] flex items-center">link</span>
                     <a href="https://blog.naver.com/namu_re" target="_blank" class="font-body-sm text-on-surface hover:text-primary transition-colors">blog.naver.com/namu2forest</a>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-on-surface-variant w-8 text-[20px] flex items-center">location_on</span>
+                    <span class="material-symbols-outlined text-primary w-8 text-[20px] flex items-center">location_on</span>
                     <span class="font-body-sm text-on-surface">경기도 화성시 동탄구 동탄기흥로 447-20<br>동탄역유퍼스트 1층 112호</span>
                 </div>
             </div>
-            <div class="mt-4 pt-4 border-t border-outline-variant/30">
+            <div class="mt-4 pt-4 border-t border-[#E8EFEA]">
                 <p class="text-label-sm text-on-surface-variant">© 2026 Namu Real Estate. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <nav class="md:hidden bg-[#241d34] backdrop-blur-2xl fixed bottom-0 w-full z-50 rounded-t-2xl border-t-2 border-[#6d5b99] shadow-[0_-10px_35px_rgba(0,0,0,0.95)] px-margin-mobile py-3.5 flex justify-around items-center">
-        <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container font-bold rounded-full px-6 py-2 active:scale-95 transition-transform shadow-md" href="tel:010-5635-2684">
+    <nav class="md:hidden bg-white/95 backdrop-blur-xl fixed bottom-0 w-full z-50 rounded-t-2xl border-t border-[#E8EFEA] shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-margin-mobile py-3 flex justify-around items-center">
+        <a class="flex flex-col items-center justify-center bg-[#C29046] text-white font-bold rounded-full px-6 py-2 active:scale-95 transition-transform shadow-md hover:bg-[#b0813c]" href="tel:010-5635-2684">
             <span class="material-symbols-outlined text-xl mb-0.5">call</span>
             <span class="font-label-sm text-xs">전화 연결</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-primary hover:bg-surface-variant/50 active:scale-95 transition-transform rounded-xl px-5 py-2 font-medium" href="news.html">
+        <a class="flex flex-col items-center justify-center text-primary hover:bg-[#E8EFEA]/60 active:scale-95 transition-transform rounded-xl px-5 py-2 font-medium" href="news.html">
             <span class="material-symbols-outlined text-xl mb-0.5">newspaper</span>
             <span class="font-label-sm text-xs">소식 & 공지</span>
         </a>
