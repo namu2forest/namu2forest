@@ -29,8 +29,28 @@ class PostDB {
   }
 
   initStorage() {
-    if (!localStorage.getItem(STORAGE_KEY)) {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_POSTS));
+    } else {
+      try {
+        const posts = JSON.parse(stored);
+        let updated = false;
+        posts.forEach(p => {
+          if (p.id === 'post-2' && p.title === '동탄역 유퍼스트 상가 및 사무실 매물 안내') {
+            p.title = '동탄 나무 부동산 매물 안내';
+            if (p.content && p.content.startsWith('# 동탄역 유퍼스트 상가 & 사무실 매물')) {
+              p.content = p.content.replace('# 동탄역 유퍼스트 상가 & 사무실 매물', '# 동탄 나무 부동산 매물 안내');
+            }
+            updated = true;
+          }
+        });
+        if (updated) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+        }
+      } catch (e) {
+        console.error('Failed to migrate posts in LocalStorage', e);
+      }
     }
   }
 
