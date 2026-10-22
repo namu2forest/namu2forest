@@ -19,7 +19,7 @@ const INITIAL_POSTS = [
     author: '서주용 대표',
     createdAt: '2026-08-25',
     summary: '다양한 매물을 정직하게 소개하겠습니다.',
-    content: `# 아래 링크로 접속하시면 바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n**전화 상담 문의**: 010-5635-2684`
+    content: `# 아래 링크로 접속하시면\n# 바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n[**전화 상담 문의**: 010-5635-2684](tel:01056352684)`
   }
 ];
 
@@ -40,7 +40,7 @@ class PostDB {
           if (p.id === 'post-2') {
             p.title = '동탄 나무 부동산 매물 안내';
             p.summary = '다양한 매물을 정직하게 소개하겠습니다.';
-            p.content = `# 아래 링크로 접속하시면 바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n**전화 상담 문의**: 010-5635-2684`;
+            p.content = `# 아래 링크로 접속하시면\n# 바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n[**전화 상담 문의**: 010-5635-2684](tel:01056352684)`;
             updated = true;
           }
         });
