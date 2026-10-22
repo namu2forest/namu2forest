@@ -19,7 +19,7 @@ const INITIAL_POSTS = [
     author: '서주용 대표',
     createdAt: '2026-08-25',
     summary: '다양한 매물을 정직하게 소개하겠습니다.',
-    content: `# 아래 링크로 접속하시면\n# 바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n[**전화 상담 문의**: 010-5635-2684](tel:01056352684)`
+    content: `아래 링크로 접속하시면\n바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n[**전화 상담 문의**: 010-5635-2684](tel:01056352684)`
   }
 ];
 
@@ -40,7 +40,7 @@ class PostDB {
           if (p.id === 'post-2') {
             p.title = '동탄 나무 부동산 매물 안내';
             p.summary = '다양한 매물을 정직하게 소개하겠습니다.';
-            p.content = `# 아래 링크로 접속하시면\n# 바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n[**전화 상담 문의**: 010-5635-2684](tel:01056352684)`;
+            p.content = `아래 링크로 접속하시면\n바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n[**전화 상담 문의**: 010-5635-2684](tel:01056352684)`;
             updated = true;
           }
         });
@@ -77,60 +77,4 @@ class PostDB {
       } else {
         posts.unshift(post);
       }
-    } else {
-      const newPost = {
-        ...post,
-        id: 'post-' + Date.now(),
-        createdAt: new Date().toISOString().split('T')[0]
-      };
-      posts.unshift(newPost);
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
-    return true;
-  }
-
-  deletePost(id) {
-    let posts = this.getPosts();
-    posts = posts.filter(p => p.id !== id);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
-    return true;
-  }
-
-  async syncWithGitHub(token, owner, repo) {
-    if (!token || !owner || !repo) return false;
-    const path = 'data/posts.json';
-    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-    const posts = this.getPosts();
-    const contentEncoded = btoa(unescape(encodeURIComponent(JSON.stringify(posts, null, 2))));
-
-    try {
-      let sha = '';
-      const getRes = await fetch(apiUrl, {
-        headers: { Authorization: `token ${token}` }
-      });
-      if (getRes.ok) {
-        const fileData = await getRes.json();
-        sha = fileData.sha;
-      }
-
-      const putRes = await fetch(apiUrl, {
-        method: 'PUT',
-        headers: {
-          Authorization: `token ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: 'Update posts.json via Board Admin',
-          content: contentEncoded,
-          sha: sha || undefined
-        })
-      });
-      return putRes.ok;
-    } catch (e) {
-      console.error('GitHub Sync Error:', e);
-      return false;
-    }
-  }
-}
-
-window.postDB = new PostDB();
+    } else
