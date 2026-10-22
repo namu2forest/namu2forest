@@ -19,7 +19,7 @@ const INITIAL_POSTS = [
     author: '서주용 대표',
     createdAt: '2026-08-25',
     summary: '과장없는 정직한 광고, 다양한 매물을 만나보세요.',
-    content: `# 동탄 나무부동산 매물 소개\n\n아래 링크에 접속하시면 바로 연결이 가능합니다.\n\n### https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV\**전화 상담 문의**: 010-5635-2684`
+    content: `# 아래 링크로 접속하시면 바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n**전화 상담 문의**: 010-5635-2684`
   }
 ];
 
@@ -37,11 +37,9 @@ class PostDB {
         const posts = JSON.parse(stored);
         let updated = false;
         posts.forEach(p => {
-          if (p.id === 'post-2' && p.title === '동탄역 유퍼스트 상가 및 사무실 매물 안내') {
+          if (p.id === 'post-2') {
             p.title = '동탄 나무 부동산 매물 안내';
-            if (p.content && p.content.startsWith('# 동탄역 유퍼스트 상가 & 사무실 매물')) {
-              p.content = p.content.replace('# 동탄역 유퍼스트 상가 & 사무실 매물', '# 동탄 나무 부동산 매물 안내');
-            }
+            p.content = `# 아래 링크로 접속하시면 바로 확인이 가능합니다.\n\n[▶▶ 매물 바로 보기 ◀◀](https://fin.land.naver.com/realtors/NxfYD92blIlM9wB4JV)\n\n**전화 상담 문의**: 010-5635-2684`;
             updated = true;
           }
         });
